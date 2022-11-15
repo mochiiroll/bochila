@@ -1,0 +1,17 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body{
+    text-align: center;
+    background: rgb(237,229,189);
+background: linear-gradient(90deg, rgba(237,229,189,1) 32%, rgba(147,97,50,1) 85%);
+}
+
+h1{
+    font-family: 'Anton', sans-serif;
+    color: rgb(41, 41, 23);
+}
+
