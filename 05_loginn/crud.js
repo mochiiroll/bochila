@@ -45,7 +45,7 @@ window.addEventListener("DOMContentLoaded", async (e) => {
                 id=btn.dataset.id;
                 console.log(btn.dataset.id);
                 Swal.fire({
-                    title: 'Estás seguro de eliminar es Alumno?',
+                    title: 'Estás seguro de eliminar idol?',
                     showDenyButton: true,
                     confirmButtonText: 'Si',
                     denyButtonText: `No`,
