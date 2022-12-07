@@ -42,7 +42,7 @@ onAuthStateChanged(auth,(user)=>{
     
     const uid=user.uid;
   }else{
-    container.innerHTML=`<h1>Registrarse</h1>`
+    container.innerHTML=`<h1>Registrarse porfavor</h1>`
   }
 
 })
@@ -131,7 +131,7 @@ try {
             document.querySelector("#crear").style.display="none";
             const uid=user.uid;
         }else{
-container.innerHTML=`<h1>No tiene usuario</h1>`
+container.innerHTML=`<h1>No hay usuario</h1>`
         }
 
           })
