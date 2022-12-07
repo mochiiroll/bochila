@@ -16,12 +16,12 @@ const coleccion=collection(db,"productos");
 let editStatus = false;
 let id = "";
 
-const onGetProductos = (callback) => onSnapshot(coleccion, callback);
+const onGetAlumnos = (callback) => onSnapshot(coleccion, callback);
 
 
 window.addEventListener("DOMContentLoaded", async (e) => {
     
-    onGetProductos((querySnapshot)=>{
+    onGetAlumnos((querySnapshot)=>{
         const divProductos=document.querySelector("#lista");
         divProductos.innerHTML = "";
         querySnapshot.forEach((doc) => {

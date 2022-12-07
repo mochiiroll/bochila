@@ -1,3 +1,32 @@
 img{
     height: 40px;
 }
+
+*{
+    margin: 0;
+    padding: 0;
+}
+body{
+    font-family: 'Oswald', sans-serif;
+}
+#iniciar{
+    color: white;
+}
+#crear{
+    color: white;
+}
+#cerrar{
+    color: white;
+}
+#bp{
+    color: white;
+}
+#offcanvasNavbar{
+    background: #86acc5;
+}
+#hu{
+    margin: 10px;
+}
+#btnadd{
+    margin: 10px;
+}

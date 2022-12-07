@@ -23,13 +23,13 @@ onAuthStateChanged(auth,(user)=>{
     <!--Start table crud-->
       
       <table class="table" onload="onGetAlumnos()">
-        <thead class="table table-dark table-hover">
+        <thead class="table table-primary table-hover">
           <tr>
             <th scope="col">ID</th>
-            <th scope="col">Name</th>
-            <th scope="col">Price</th>
-            <th scope="col">Stock</th>
-            <th scope="col">Description</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Grupo</th>
+            <th scope="col">Debut</th>
+            <th scope="col">Fecha de cumpleaños</th>
             <th scope="col">Edit</th>
             <th scope="col">Delete</th>
           </tr>
