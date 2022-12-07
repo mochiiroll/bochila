@@ -27,7 +27,7 @@ window.addEventListener("DOMContentLoaded", async (e) => {
         querySnapshot.forEach((doc) => {
             const producto = doc.data();
             divProductos.innerHTML += `
-            <td><button class="btn btn-danger" id="btnAdd" data-bs-toggle="modal" data-bs-target="#addModal"><i class="bi bi-check"></i>Add Register</button></td>
+            <button class="btn btn-danger" id="btnAdd" data-bs-toggle="modal" data-bs-target="#addModal"><i class="bi bi-check"></i>Agregar registro</button></td>
                     
                 <tr>
                     <td>n${producto.name}</td>
