@@ -20,10 +20,29 @@ onAuthStateChanged(auth,(user)=>{
   if(user){
     container.innerHTML=`<h2>${user.displayName}</h2>
     <p> ${user.email}</p><br>
+    <!--Start table crud-->
+      
+      <table class="table" onload="onGetAlumnos()">
+        <thead class="table table-dark table-hover">
+          <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Name</th>
+            <th scope="col">Price</th>
+            <th scope="col">Stock</th>
+            <th scope="col">Description</th>
+            <th scope="col">Edit</th>
+            <th scope="col">Delete</th>
+          </tr>
+        </thead>
+        <tbody id="lista">
+        </tbody>
+      </table>
+      <!--End table crud-->
     `
+    
     const uid=user.uid;
   }else{
-    container.innerHTML=`<h1>Pleace login</h1>`
+    container.innerHTML=`<h1>Registrarse</h1>`
   }
 
 })
@@ -41,16 +60,16 @@ e.preventDefault();
         console.log(credencial)
         Swal.fire({
             icon: 'success',
-        title: 'Secces',
-        text: 'You logged in',
+        title: 'Exito',
+        text: 'Registrado exitosamente',
         
     })
     } catch (error) {
         console.log(error)
         Swal.fire({
-            icon: 'error',
+            icon: 'Error',
            title: 'Ops...',
-            text: 'Don´t is possible login whit google in this moment',
+            text: 'Es posible que exista un error con Google',
               })
     }
 
@@ -95,8 +114,8 @@ try {
     console.log(res);
     Swal.fire({
         icon: 'success',
-    title: 'Secces',
-    text: 'You logged in',
+    title: 'Exito :D',
+    text: 'Registrado',
         
      })
     var myModalEl = document.getElementById ('modLog');
@@ -112,7 +131,7 @@ try {
             document.querySelector("#crear").style.display="none";
             const uid=user.uid;
         }else{
-container.innerHTML=`<h1>Don´t have user</h1>`
+container.innerHTML=`<h1>No tiene usuario</h1>`
         }
 
           })
@@ -120,7 +139,7 @@ container.innerHTML=`<h1>Don´t have user</h1>`
     Swal.fire({
         icon: 'error',
        title: 'Ops...',
-        text: 'Check your email or password',
+        text: 'Revisa tu contraseña o tu Email',
           })
 }
 
@@ -141,8 +160,8 @@ try{
 console.log(respuesta.user);
 Swal.fire({
     icon: 'success',
-    title: 'Secces',
-    text: 'Is created your account',
+    title: 'Exito :D',
+    text: 'Cuenta creada',
 
   })
   email.value='';
@@ -155,21 +174,21 @@ if (code=='auth/invalid-email'){
     Swal.fire({
         icon: 'error',
        
-        text: 'Invalid email',
+        text: 'Email invalido',
           })
 }
 if (code=='auth/weak-password'){
     Swal.fire({
         icon: 'error',
        
-        text: 'Invalid password',
+        text: 'Contraseña invalida',
           })
 }
 if (code=='auth/email-already-in-user'){
     Swal.fire({
         icon: 'error',
        
-        text: 'This email is in use',
+        text: 'Este email ya esta en uso',
           })
 }
 }
