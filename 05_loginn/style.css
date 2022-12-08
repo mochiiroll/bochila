@@ -1,7 +1,3 @@
-img{
-    height: 40px;
-}
-
 *{
     margin: 0;
     padding: 0;
@@ -22,11 +18,15 @@ body{
     color: white;
 }
 #offcanvasNavbar{
-    background: #86acc5;
+    background: #629dc4;
 }
 #hu{
     margin: 10px;
 }
-#btnadd{
+#btnAdd{
     margin: 10px;
+}
+
+img{
+    height: 30px;
 }

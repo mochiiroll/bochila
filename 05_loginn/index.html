@@ -12,15 +12,15 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Oswald&family=Teko&display=swap" rel="stylesheet">
-<link rel="shortcut icon" href="jyplogo.png">
-<link rel="stylesheet" href="style.css">   
+<link rel="shortcut icon" href="jyplogo.png" />    
+<link rel="stylesheet" href="style.css">
     <title>FireBase</title>
 </head>
 <body>
 <!-- START CARD -->
-    <nav class="navbar fixed-top" style="background-color:rgb(210, 237, 247);">
+    <nav class="navbar fixed-top" style="background-color: #97c1dd;">
         <div class="container-fluid">
-          <a class="navbar-brand" href="#" id="bp"><img src="jyp.png"></a>
+          <a class="navbar-brand" href="#" id="bp"><img src="jyp.png" alt=""></a>
           <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
             <span class="navbar-toggler-icon"></span>
           </button>
@@ -35,13 +35,13 @@
                   <a class="nav-link active" id="bp" aria-current="page" href="#">INICIO</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" id="iniciar" href="#" data-bs-toggle="modal" data-bs-target="#modLog">INICIAR CUENTA</a>
+                  <a class="nav-link" id="iniciar" href="#" data-bs-toggle="modal" data-bs-target="#modLog">INICIAR SESION</a>
                 </li>
                 <li class="nav-item">
                   <a class="nav-link" id="crear" href="#" data-bs-toggle="modal" data-bs-target="#crearModal">CREAR CUENTA</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" id="cerrar" href="#" data-bs-toggle="modal" data-bs-target="#">SALIR DE LA CUENTA</a>
+                  <a class="nav-link" id="cerrar" href="#" data-bs-toggle="modal" data-bs-target="#">SALIR</a>
                 </li>
           
 
@@ -58,16 +58,17 @@
       Featured
     </div>
     <div class="card-body" >
-      <h5 class="card-title" id="hu"></h5>
-      <p class="card-text" id="container"></p>
+      <h5 class="card-title" id="hu">BIENVENIDO</h5>
+      <div id="container"></div>
+
+      
 
     </div>
     <div class="card-footer text-muted">
-        desing by Ari <i class="bi bi-arrow-through-heart"></i> Zag
+      desing by Ari <i class="bi bi-arrow-through-heart"></i> Zag
     </div>
   </div>
 <!-- END CARD -->
-
 <!-- START MODAL Login -->
 
 
@@ -75,25 +76,25 @@
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h1 class="modal-title fs-5" id="exampleModalLabel"><i class="bi bi-person-bounding-box m-2" ></i>INICIAR CUENTA</h1>
+          <h1 class="modal-title fs-5" id="exampleModalLabel"><i class="bi bi-person-bounding-box m-2" ></i>INICIAR SESION</h1>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
           <form>
             <div class="mb-3">
-              <label for="recipient-name" class="col-form-label">EMAIL:</label>
+              <label for="recipient-name" class="col-form-label">Email:</label>
               <input type="text" class="form-control" id="Iemail">
             </div>
             <div class="mb-3">
-              <label for="message-text" class="col-form-label">CONTRASEÑA:</label>
+              <label for="message-text" class="col-form-label">Contraseña:</label>
               <input type="password" class="form-control" id="IPass" required>
             </div>
           </form>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal"><i class="bi bi-x-lg m-2"></i>CANCELAR</button>
-          <button type="button" class="btn btn-outline-success" id="BtnI"><i class="bi bi-power m-2"></i>ENTRAR</button>
-                <button type="button" class="btn btn-outline-info" id="BtnCAG"><i class="bi bi-google m-2" ></i></i>GOOGLE</button>
+          <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal"><i class="bi bi-x-lg m-2"></i>Cancelar</button>
+          <button type="button" class="btn btn-outline-success" id="BtnI"><i class="bi bi-power m-2"></i>Iniciar</button>
+                <button type="button" class="btn btn-outline-info" id="BtnCAG"><i class="bi bi-google m-2" ></i></i>Iniciar con Google</button>
         </div>
       </div>
     </div>
@@ -115,19 +116,19 @@
         <div class="modal-body">
           <form>
             <div class="mb-3">
-              <label for="recipient-name" class="col-form-label">EMAIL:</label>
+              <label for="recipient-name" class="col-form-label">Email:</label>
               <input type="email" class="form-control" id="crearemail" required>
             </div>
             <div class="mb-3">
-              <label for="message-text" class="col-form-label">CONTRASEÑA:</label>
+              <label for="message-text" class="col-form-label">Contraseña:</label>
               <input type="password" class="form-control" id="crearcontra" required>
             </div>
           </form>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal"><i class="bi bi-x-lg m-2"></i>CANCELAR</button>
-          <button type="button" class="btn btn-outline-success" id="btncrear"><i class="bi bi-power m-2" ></i>CREAR CUENTA</button>
-          <button type="button" class="btn btn-outline-info" id="BtnCAG"><i class="bi bi-google m-2" ></i></i>GOOGLE</button>
+          <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal"><i class="bi bi-x-lg m-2"></i>Cancelar</button>
+          <button type="button" class="btn btn-outline-success" id="btncrear"><i class="bi bi-power m-2" ></i>Crear</button>
+          <button type="button" class="btn btn-outline-info" id="BtnCAG"><i class="bi bi-google m-2" ></i></i>Registrarse con Google</button>
           
         </div>
       </div>
@@ -135,10 +136,85 @@
   </div>
 
 <!-- END MODAL CA -->
+<!--edit modal-->
+<div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModal" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel"><i class="bi bi-pencil-square"></i> Editar</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="mb-3">
+            <label for="recipient-name" class="col-form-label">Nombre:</label>
+            <input type="text" class="form-control" id="ename">
+          </div>
+          <div class="mb-3">
+            <label for="recipient-name" class="col-form-label">Grupo:</label>
+            <input type="text" class="form-control" id="eprice">
+          </div>
+          <div class="mb-3">
+            <label for="recipient-name" class="col-form-label">Debut:</label>
+            <input type="text" class="form-control" id="estock">
+          </div>
+          
+          <div class="mb-3">
+            <label for="recipient-name" class="col-form-label">Cumpleaños:</label>
+            <input type="text" class="form-control" id="edescripcion">
+            <input type="hidden" name="id">
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal"><i class="bi bi-trash m-2"></i>Cancelar</button>
+        <button type="button" class="btn btn-success" id="btnSave"><i class="bi bi-save m-2"></i>Guardar</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!--add modal-->
+<div class="modal fade" id="addModal" tabindex="-1" aria-labelledby="addModal" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel"><i class="bi bi-arrow-right-square-fill m-2"></i>Agregar</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="mb-3">
+            <label for="recipient-name" class="col-form-label">Nombre:</label>
+            <input type="text" class="form-control" id="name">
+          </div>
+          <div class="mb-3">
+            <label for="recipient-name" class="col-form-label">Grupo:</label>
+            <input type="text" class="form-control" id="price">
+          </div>
+          <div class="mb-3">
+            <label for="recipient-name" class="col-form-label">Debut:</label>
+            <input type="text" class="form-control" id="stock">
+          </div>
+          <div class="mb-3">
+            <label for="recipient-name" class="col-form-label">Cumpleaños:</label>
+            <input type="text" class="form-control" id="description">
+            <input type="hidden" name="id">
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal"><i class="bi bi-trash m-2"></i>Cancelar</button>
+        <button type="button" class="btn btn-outline-primary" id="btnAdd"> <i class="bi bi-save m-2" ></i>Guardar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
 
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.6.8/dist/sweetalert2.all.min.js"></script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="app.js" type="module"></script>
+    <script src="kode.js" type="module"></script>
     <script src="crud.js" type="module"></script>
-</body>
+  </body>
 </html>
