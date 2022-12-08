@@ -21,7 +21,7 @@ onAuthStateChanged(auth,(user)=>{
     container.innerHTML=`<h2>${user.displayName}</h2>
     <p> ${user.email}</p><br>
     
-    <button class="btn btn-outline-primary" id="btnAdd" data-bs-toggle="modal" data-bs-target="#addModal"><i class="bi bi-check"></i>Agregar registro</button>
+    <button class="btn btn-outline-primary" id="btnAdd" data-bs-toggle="modal" data-bs-target="#addModal"><i class="bi bi-plus-circle-dotted"></i> Agregar registro</button>
       <table class="table" onload="onGetAlumnos()">
         <thead class="table table-primary table-hover">
           <tr>
