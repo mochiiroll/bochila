@@ -29,13 +29,12 @@ window.addEventListener("DOMContentLoaded", async (e) => {
             divProductos.innerHTML += `
                     
                 <tr>
-                    <td>n${producto.name}</td>
-                    <td>p${producto.price}</td>
-                    <td>s${producto.stock}</td>
-                    <td>d${producto.descripcion}</td>
+                    <td>${producto.name}</td>
+                    <td>${producto.price}</td>
+                    <td>${producto.stock}</td>
+                    <td>${producto.description}</td>
                     <td><button class="btn btn-danger btnDelete"  data-id="${doc.id}"><i class="bi bi-trash"></i></button></td>
                     <td><button class="btn btn-primary btnEdit" data-bs-toggle="modal" data-bs-target="#editModal"   data-id="${doc.id}"><i class="bi bi-pencil"></i></button></td>
-                    <td><button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#qrModal"   data-id="${doc.id}"><i class="bi bi-qr-code"></i></button></td>
                 </tr>
                 `;
         });
@@ -76,7 +75,7 @@ window.addEventListener("DOMContentLoaded", async (e) => {
                     document.querySelector("#ename").value=producto.name;
                     document.querySelector("#eprice").value=producto.price;
                     document.querySelector("#estock").value=producto.stock;
-                    document.querySelector("#edescripcion").value=producto.descripcion;
+                    document.querySelector("#edescription").value=producto.description;
                     editStatus = true;
                     id = data.id;
                 } catch (error) {
@@ -94,14 +93,14 @@ btnAdd.addEventListener("click",()=>{
     const name=document.querySelector("#name").value;
     const price=document.querySelector("#price").value;
     const stock=document.querySelector("#stock").value;
-    const descripcion=document.querySelector("#descripcion").value;
+    const description=document.querySelector("#description").value;
 
-    if(name=="" || price=="" || stock=="" || descripcion==""){
+    if(name=="" || price=="" || stock=="" || description==""){
         Swal.fire("falta llenar Campos");
         return;
     }
 
-    const producto={ name, price, stock, descripcion};
+    const producto={ name, price, stock, description};
 
     if (!editStatus) {
         addDoc(coleccion, producto);        
@@ -122,14 +121,14 @@ btnSave.addEventListener("click",()=>{
     const name=document.querySelector("#ename").value;
     const price=document.querySelector("#eprice").value;
     const stock=document.querySelector("#estock").value;
-    const descripcion=document.querySelector("#edescripcion").value;
+    const description=document.querySelector("#edescription").value;
 
-    if(name=="" || price=="" || stock=="" || descripcion==""){
+    if(name=="" || price=="" || stock=="" || description==""){
         Swal.fire("Fil all camps");
         return;
     }
 
-    const producto={ name, price, stock, descripcion};
+    const producto={ name, price, stock, description};
 
     if (editStatus) {
         updateDoc(doc(db, "productos", id), producto);
