@@ -33,8 +33,9 @@ window.addEventListener("DOMContentLoaded", async (e) => {
                     <td>${producto.price}</td>
                     <td>${producto.stock}</td>
                     <td>${producto.description}</td>
-                    <td><button class="btn btn-danger btnDelete"  data-id="${doc.id}"><i class="bi bi-trash"></i></button></td>
-                    <td><button class="btn btn-primary btnEdit" data-bs-toggle="modal" data-bs-target="#editModal"   data-id="${doc.id}"><i class="bi bi-pencil"></i></button></td>
+                    <td><button class="btn btn-light btnDelete"  data-id="${doc.id}"><i class="bi bi-trash"></i></button></td>
+                    <td><button class="btn btn-light btnEdit" data-bs-toggle="modal" data-bs-target="#editModal"   data-id="${doc.id}"><i class="bi bi-pen"></i></button></td>
+                    <td><button class="btn btn-light btnQR" data-bs-toggle="modal" data-bs-target="#qrModal"  data-id="${doc.id}"><i class="bi bi-qr-code"></i></button></td>
                 </tr>
                 `;
         });
@@ -47,13 +48,14 @@ window.addEventListener("DOMContentLoaded", async (e) => {
                 id=btn.dataset.id;
                 console.log(btn.dataset.id);
                 Swal.fire({
-                    title: 'Eliminar este regitro?',
+                    title: 'desea eliminar este registro?',
                     showDenyButton: true,
                     confirmButtonText: 'Si',
                     denyButtonText: `No`,
                 }).then(async(result) => {
                     try {
                         if (result.isConfirmed) {
+
                             await deleteDoc(doc(db, "productos", id));
                             Swal.fire("Registro eliminado");
                         }                         
@@ -146,5 +148,20 @@ btnSave.addEventListener("click",()=>{
 });
 
 
-
-
+const btnQR=document.querySelectorAll(".btnQR");
+btnQR.forEach((btn)=>{
+    btn.addEventListener("click", async (e)=>{
+      try{
+      id=btn.dataset.id;
+      console.log(id);
+      const data=await getDoc(doc(db, "productos", id));
+      const producto=data.data();
+      const contQR=document.getElementById('contQR');
+      contQR.innerHTML=""
+      const QR=new QRCode(contQR);
+      QR.makeCode(id);
+      } catch (error){  
+        console.log(error);
+      }
+    });
+  });
