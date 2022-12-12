@@ -25,19 +25,22 @@ onAuthStateChanged(auth,(user)=>{
   if(user){
     container.innerHTML=`
     <h2>${user.displayName}</h2>
-    <p> ${user.email}</p><br>
+    <p> ${user.email}</p>
+    <p> ${user.phoneNumber}</p>
     
-    <button class="btn btn-info" id="btnAdd" data-bs-toggle="modal" data-bs-target="#addModal"><i class="bi bi-plus-circle-dotted"></i> Agregar resgitro</button>
+    <button class="btn btn-info" id="btnAdd" data-bs-toggle="modal" data-bs-target="#addModal"><i class="bi bi-cloud-plus"></i> Agregar</button>
       <table class="table" onload="onGetAlumnos()">
-        <thead class="table table-primary table-hover">
+        <thead class="table table-info table-hover">
           <tr>
             <th scope="col">Nombre</th>
             <th scope="col">Grupo</th>
             <th scope="col">Debut</th>
             <th scope="col">Cumpleaños</th>
+            <th scope="col">Edad</th>
+            <th scope="col">Estarura</th>           
             <th scope="col">Eliminar</th>
             <th scope="col">Editar</th>
-            <th scope="col">QR</th>
+            <th scope="col">Codigo QR</th>
           </tr>
         </thead>
         <tbody id="lista">
@@ -47,48 +50,52 @@ onAuthStateChanged(auth,(user)=>{
     `
     const uid=user.uid;
   }else{
-    container.innerHTML=`<h1>Pleace login</h1>`
+    container.innerHTML=`<img src="hii.png" class="uwu">
+    <h1>Inicie sesion porfavor</h1>
+
+    
+   `
   }
 
 })
 
-const btnPhone=document.querySelector("#BtnPhone");
-btnPhone.addEventListener('click', async(e)=>{
+const btnFon=document.querySelector("#BtnPhone");
+btnFon.addEventListener('click', async(e)=>{
   e.preventDefault();
   try{
-    const{value:tel}=await Swal.fire({
-      title: 'Ponga su numero de telefono por favor',
+    const {value:tel}=await Swal.fire({
+      title: 'Su numero de telefono',
       input: 'tel',
-      inputLabel: 'Telefono',
+      inputLabel: 'Phone',
+      inputValue: '+52',
       confirmButtonColor: '#3085d6',
       cancelButtonColor: '#d33',
       cancelButtonText: 'Cancelar',
       confirmButtonText: 'Enviar codigo de verificacion',
       showCancelButton: true,
     })
-    window.recaptchaVerifier=new RecaptchaVerifier('recaptcha',
-       {'size':'invisible'}, auth);
-    const appVerify=window.recaptchaVerifier;
-    const confirmRes=await signInWithPhoneNumber(auth, tel, appVerify)
-    console.log(confirmRes);
-
+    window.recaptchaVerifier=new RecaptchaVerifier('recaptcha', {'size':'invisible'}, auth);
+    const appVerifier=window.recaptchaVerifier;
+    const confirmationResult=await signInWithPhoneNumber(auth, tel, appVerifier)
+    console.log(confirmationResult);
+    window.confirmationResult=confirmationResult;
     const {value:code}=await Swal.fire({
-      title: 'Por favor ponga su codigo de verificacion',
+      title: 'Su codigo de verificacion porfavor',
       input: 'text',
-      inputLabel: 'Code',
+      inputLabel: 'Codigo',
       confirmButtonColor: '#3085d6',
       cancelButtonColor: '#d33',
-      cancelButtonText: 'Cancel',
-      confirmButtonText: 'Verify',
+      cancelButtonText: 'Cancelar',
+      confirmButtonText: 'Verificar',
       showCancelButton: true,
     })
 
-    const res=await window.confirmRes.confirm(code)
-    user=res.user;
+    const result=await window.confirmationResult.confirm(code)
+    user=result.user;
     checarEstado(user)
 
   }catch(error){
-    Swal.fire('No fue posible iniciar con su numero de telefono')
+    Swal.fire('No fue posible iniciar con numero de telefono en este momento');
   }
   });
 
@@ -99,18 +106,19 @@ e.preventDefault();
     try {
         const result=await signInAnonymously(auth);
         user=result.user;
-        const modalInstance = bootstrap.Modal.getInstance(btnAn.closest('.modal'));
-        modalInstance.hide();
+        bootstrap.Modal.getInstance(document.getElementById('modLog')).hide();
     } catch (error) {
         console.log(error)
         Swal.fire({
             icon: 'error',
            title: 'Ops...',
-            text: 'No fue posible iniciar sesion :(',
+            text: 'No fue posible iniciar en este momento',
               })
     }
 
 });
+
+
 
 
 
@@ -126,7 +134,7 @@ e.preventDefault();
         Swal.fire({
             icon: 'success',
         title: 'Exito :D',
-        text: 'Has sido registrado',
+        text: 'Se inicio con exito',
         
     })
     } catch (error) {
@@ -134,7 +142,7 @@ e.preventDefault();
         Swal.fire({
             icon: 'error',
            title: 'Ops...',
-            text: 'No fue posible iniciar con google en estos momentos',
+            text: 'No fue posible iniciar con Google en estos momentos',
               })
     }
 
@@ -183,8 +191,8 @@ try {
     console.log(res);
     Swal.fire({
         icon: 'success',
-    title: 'Secces',
-    text: 'You logged in',
+    title: 'Exito :D',
+    text: 'Has iniciado sesion',
         
      })
     var myModalEl = document.getElementById ('modLog');
@@ -200,7 +208,7 @@ try {
             document.querySelector("#crear").style.display="none";
             const uid=user.uid;
         }else{
-container.innerHTML=`<h1>Don´t have user</h1>`
+container.innerHTML=`<h1>No hay usuario</h1>`
         }
 
           })
@@ -208,7 +216,7 @@ container.innerHTML=`<h1>Don´t have user</h1>`
     Swal.fire({
         icon: 'error',
        title: 'Ops...',
-        text: 'Check your email or password',
+        text: 'Revisa tu email o contraseña',
           })
 }
 
@@ -229,8 +237,8 @@ try{
 console.log(respuesta.user);
 Swal.fire({
     icon: 'success',
-    title: 'Secces',
-    text: 'Is created your account',
+    title: 'Exito :D',
+    text: 'Has creado una cuenta',
 
   })
   email.value='';
@@ -243,21 +251,21 @@ if (code=='auth/invalid-email'){
     Swal.fire({
         icon: 'error',
        
-        text: 'Invalid email',
+        text: 'Email invalido',
           })
 }
 if (code=='auth/weak-password'){
     Swal.fire({
         icon: 'error',
        
-        text: 'Invalid password',
+        text: 'Contraseña invalida',
           })
 }
 if (code=='auth/email-already-in-user'){
     Swal.fire({
         icon: 'error',
        
-        text: 'This email is in use',
+        text: 'Este email ya esta en uso',
           })
 }
 }
