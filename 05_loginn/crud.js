@@ -11,7 +11,7 @@ import {
  } from "https://www.gstatic.com/firebasejs/9.14.0/firebase-firestore.js"
 
 const db=getFirestore();
-const coleccion=collection(db,"productos");
+const coleccion=collection(db,"idols");
 
 let editStatus = false;
 let id = "";
@@ -22,23 +22,25 @@ const onGetProductos = (callback) => onSnapshot(coleccion, callback);
 window.addEventListener("DOMContentLoaded", async (e) => {
     
     onGetProductos((querySnapshot)=>{
-        const divProductos=document.querySelector("#lista");
-        divProductos.innerHTML = "";
+        const divIdols=document.querySelector("#lista");
+        divIdols.innerHTML = "";
         querySnapshot.forEach((doc) => {
-            const producto = doc.data();
-            divProductos.innerHTML += `
+            const idol = doc.data();
+            divIdols.innerHTML += `
                     
                 <tr>
-                    <td>${producto.name}</td>
-                    <td>${producto.price}</td>
-                    <td>${producto.stock}</td>
-                    <td>${producto.description}</td>
-                    <td><button class="btn btn-danger btnDelete"  data-id="${doc.id}"><i class="bi bi-trash"></i></button></td>
-                    <td><button class="btn btn-primary btnEdit" data-bs-toggle="modal" data-bs-target="#editModal"   data-id="${doc.id}"><i class="bi bi-pencil"></i></button></td>
+                    <td>${idol.name}</td>
+                    <td>${idol.grupo}</td>
+                    <td>${idol.debut}</td>
+                    <td>${idol.cum}</td>
+                    <td>${idol.edad}</td>
+                    <td>${idol.estatura}</td>
+
+                    <td><button class="btn btn-outline-danger btnDelete"  data-id="${doc.id}"><i class="bi bi-trash"></i></button></td>
+                    <td><button class="btn btn-outline-secondary btnEdit" data-bs-toggle="modal" data-bs-target="#editModal"   data-id="${doc.id}"><i class="bi bi-pen"></i></button></td>
                 </tr>
                 `;
         });
- 
 
         const btnDelete = document.querySelectorAll(".btnDelete");
         //console.log(btnsDelete);
@@ -47,18 +49,18 @@ window.addEventListener("DOMContentLoaded", async (e) => {
                 id=btn.dataset.id;
                 console.log(btn.dataset.id);
                 Swal.fire({
-                    title: 'Eliminar este regitro?',
+                    title: 'Seguro que quieres borrar este registro?',
                     showDenyButton: true,
                     confirmButtonText: 'Si',
                     denyButtonText: `No`,
                 }).then(async(result) => {
                     try {
                         if (result.isConfirmed) {
-                            await deleteDoc(doc(db, "productos", id));
+                            await deleteDoc(doc(db, "idols", id));
                             Swal.fire("Registro eliminado");
                         }                         
                     } catch (error) {
-                        Swal.fire("ERROR DELETE FILED");
+                        Swal.fire("Error al eliminar");
                     }
                 })       
             })
@@ -70,12 +72,15 @@ window.addEventListener("DOMContentLoaded", async (e) => {
                 try {
                     id=btn.dataset.id;
                     console.log(id);
-                    const data= await getDoc(doc(db, "productos", id));
-                    const producto = data.data();
-                    document.querySelector("#ename").value=producto.name;
-                    document.querySelector("#eprice").value=producto.price;
-                    document.querySelector("#estock").value=producto.stock;
-                    document.querySelector("#edescription").value=producto.description;
+                    const data= await getDoc(doc(db, "idols", id));
+                    const idol = data.data();
+                    document.querySelector("#ename").value=idol.name;
+                    document.querySelector("#egrupo").value=idol.grupo;
+                    document.querySelector("#edebut").value=idol.debut;
+                    document.querySelector("#ecum").value=idol.cum;
+                    document.querySelector("#eedad").value=idol.edad;
+                    document.querySelector("#eestatura").value=idol.estatura;
+
                     editStatus = true;
                     id = data.id;
                 } catch (error) {
@@ -91,19 +96,21 @@ window.addEventListener("DOMContentLoaded", async (e) => {
 const btnAdd=document.querySelector("#btnAdd");
 btnAdd.addEventListener("click",()=>{
     const name=document.querySelector("#name").value;
-    const price=document.querySelector("#price").value;
-    const stock=document.querySelector("#stock").value;
-    const description=document.querySelector("#description").value;
+    const grupo=document.querySelector("#grupo").value;
+    const debut=document.querySelector("#debut").value;
+    const cum=document.querySelector("#cum").value;
+    const edad=document.querySelector("#edad").value;
+    const estatura=document.querySelector("#estatura").value;
 
-    if(name=="" || price=="" || stock=="" || description==""){
+    if(name=="" || grupo=="" || debut=="" || cum=="" || edad=="" || estatura=="" ){
         Swal.fire("falta llenar Campos");
         return;
     }
 
-    const producto={ name, price, stock, description};
+    const idol={ name, grupo, debut, cum, edad, estatura};
 
     if (!editStatus) {
-        addDoc(coleccion, producto);        
+        addDoc(coleccion, idol);        
         bootstrap.Modal.getInstance(document.getElementById('addModal')).hide();
     } 
 
@@ -119,19 +126,22 @@ btnAdd.addEventListener("click",()=>{
 const btnSave=document.querySelector("#btnSave");
 btnSave.addEventListener("click",()=>{
     const name=document.querySelector("#ename").value;
-    const price=document.querySelector("#eprice").value;
-    const stock=document.querySelector("#estock").value;
-    const description=document.querySelector("#edescription").value;
+    const grupo=document.querySelector("#egrupo").value;
+    const debut=document.querySelector("#edebut").value;
+    const cum=document.querySelector("#ecum").value;
+    const edad=document.querySelector("#eedad").value;
+    const estatura=document.querySelector("#eestatura").value;
 
-    if(name=="" || price=="" || stock=="" || description==""){
+
+    if(name=="" || grupo=="" || debut=="" || cum=="" || edad=="" || estatura==""){
         Swal.fire("Fil all camps");
         return;
     }
 
-    const producto={ name, price, stock, description};
+    const idol={ name, grupo, debut, cum, edad, estatura};
 
     if (editStatus) {
-        updateDoc(doc(db, "productos", id), producto);
+        updateDoc(doc(db, "idols", id), idol);
         editStatus = false;
         id = "";
         bootstrap.Modal.getInstance(document.getElementById('editModal')).hide();
@@ -140,11 +150,9 @@ btnSave.addEventListener("click",()=>{
     Swal.fire({
         icon: 'success',
         title: 'Exito :D',
-        text: 'Registro guardado'
+        text: 'Se ha guardado tu registro'
     })
     document.querySelector("#formEdit").reset();
 });
-
-
 
 

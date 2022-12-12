@@ -29,6 +29,9 @@ onAuthStateChanged(auth,(user)=>{
             <th scope="col">Grupo</th>
             <th scope="col">Debut</th>
             <th scope="col">Cumpleaños</th>
+            <th scope="col">Edad</th>
+            <th scope="col">Estatura</th>
+
             <th scope="col">Eliminar</th>
             <th scope="col">Editar</th>
             
